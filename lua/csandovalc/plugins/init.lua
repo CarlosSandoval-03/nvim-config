@@ -56,6 +56,16 @@ return {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim" }
-    }
+    },
+    {
+        "andweeb/presence.nvim",
+        lazy = false,
+        opts = function()
+            return require "csandovalc.plugins.configs.presence"
+        end,
+        config = function(_, opts)
+            require("presence").setup(opts)
+        end,
+    },
 }
 
