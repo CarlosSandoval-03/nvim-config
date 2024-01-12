@@ -7,6 +7,9 @@ return {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.5",
         dependencies = { "plenary" },
+        config = function()
+            require "csandovalc.plugins.configs.telescope"
+        end,
     },
     {
 		"nvim-tree/nvim-web-devicons",
