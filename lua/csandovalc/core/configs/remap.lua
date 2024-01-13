@@ -36,7 +36,7 @@ vim.keymap.set({"n", "v"}, "<leader>y", [["+y]]) -- selected text
 vim.keymap.set("n", "<leader>Y", [["+Y]])        -- current line
 
 -- Delete the selected text BUT DON'T copy it to the clipboard
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set("v", "<leader>d", [["_d]])
 
 -- Press <C-k> to exit to normal mode
 vim.keymap.set({"i", "v"}, "<C-k>", "<Esc>")
