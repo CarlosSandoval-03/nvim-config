@@ -78,7 +78,10 @@ return {
     },
     { 
         'wakatime/vim-wakatime',
-        lazy = false
+        lazy = false,
+        setup = function()
+            vim.cmd([[packadd wakatime/vim-wakatime]])
+        end
     },
 }
 
