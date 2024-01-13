@@ -76,5 +76,9 @@ return {
             require("presence").setup(opts)
         end,
     },
+    { 
+        'wakatime/vim-wakatime',
+        lazy = false
+    },
 }
 
