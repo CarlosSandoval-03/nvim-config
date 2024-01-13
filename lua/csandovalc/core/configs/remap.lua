@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 
 -- Execute last command
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>lc", vim.cmd.Ex)
 
 -- Select all text
 vim.keymap.set("n", "<leader>a", "ggVG")
