@@ -18,9 +18,12 @@ return {
     {
 		"folke/trouble.nvim",
          dependencies = { "web-devicons" },
+         config = function()
+            require "csandovalc.plugins.configs.trouble"
+        end,
     },
     {
-		"nvim-treesitter/nvim-treesitter",
+        "nvim-treesitter/nvim-treesitter",
         dependencies = { "plenary" },
         build = ":TSUpdate",
         config = function()
