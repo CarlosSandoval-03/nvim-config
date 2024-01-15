@@ -1,7 +1,12 @@
 local harpoon = require("harpoon")
 
 -- REQUIRED
-harpoon:setup()
+harpoon:setup({
+    global_settings = {
+        save_on_toggle = true,
+        save_on_change = true,
+    },
+})
 -- REQUIRED
 
 -------- Use Telescope UI --------
