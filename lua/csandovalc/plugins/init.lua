@@ -23,9 +23,15 @@ return {
 		"nvim-treesitter/nvim-treesitter",
         dependencies = { "plenary" },
         build = ":TSUpdate",
+        config = function()
+            require "csandovalc.plugins.configs.treesitter"
+        end,
     },
     {
 		"mbbill/undotree",
+        config = function()
+            require "csandovalc.plugins.configs.undotree"
+        end,
     },
     {
 		"tpope/vim-fugitive",
@@ -38,6 +44,9 @@ return {
     },
     {
 		"folke/zen-mode.nvim",
+        config = function()
+            require "csandovalc.plugins.configs.zenmode"
+        end,
     },
     {
         "folke/twilight.nvim",

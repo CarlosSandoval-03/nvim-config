@@ -7,7 +7,7 @@ vim.keymap.set("n", "<leader>lc", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>a", "ggVG")
 
 -- Save the current file
-vim.keymap.set("n", "<leader>u", "<cmd>update<CR>")
+vim.keymap.set("n", "<leader>s", "<cmd>update<CR>")
 
 -- Move lines up and down in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -56,7 +56,7 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- Replace the word under the cursor with the format specified in the command
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Change execution permission of the current file
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
