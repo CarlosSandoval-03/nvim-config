@@ -7,5 +7,5 @@ vim.keymap.set("n", "<leader>tn", function()
 end)
 
 vim.keymap.set("n", "<leader>tp", function()
-    require("trouble").last({ skip_groups = true, jump = true })
+    require("trouble").previous({ skip_groups = true, jump = true })
 end)

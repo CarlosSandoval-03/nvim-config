@@ -6,7 +6,7 @@ require("lazy").setup({
 
 -- Load the colorscheme
 function SetTheme(name)
-    theme = name or "tokyonight"
+    local theme = name or "tokyonight"
     vim.cmd.colorscheme(theme)
 
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })

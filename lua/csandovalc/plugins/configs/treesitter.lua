@@ -3,8 +3,8 @@ require("nvim-treesitter.configs").setup({
     ensure_installed = { "arduino", "bash", "c", "cmake", "cpp", "css", "csv",
         "cuda", "dockerfile", "go", "graphql", "html", "htmldjango", "java",
         "javascript", "jsdoc", "json", "latex", "lua", "make", "markdown",
-        "markdown_inline", "proto", "python", "regex", "ruby", "rust", "sql",
-        "toml", "tsx", "typescript", "verilog", "yaml", "zig" },
+        "markdown_inline", "nasm", "proto", "python", "regex", "ruby", "rust",
+        "sql", "toml", "tsx", "typescript", "verilog", "yaml", "zig" },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,

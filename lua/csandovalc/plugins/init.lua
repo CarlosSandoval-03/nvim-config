@@ -1,6 +1,13 @@
 return {
     {
-		"nvim-lua/plenary.nvim",
+        "neovim/nvim-lspconfig",
+        dependencies = { "williamboman/mason.nvim","williamboman/mason-lspconfig.nvim" },
+        config = function()
+            require "csandovalc.plugins.configs.lsp.lspconfig"
+        end,
+    },
+    {
+        "nvim-lua/plenary.nvim",
         name = "plenary",
     },
     {
@@ -12,13 +19,13 @@ return {
         end,
     },
     {
-		"nvim-tree/nvim-web-devicons",
+        "nvim-tree/nvim-web-devicons",
         name = "web-devicons",
     },
     {
-		"folke/trouble.nvim",
-         dependencies = { "web-devicons" },
-         config = function()
+        "folke/trouble.nvim",
+        dependencies = { "web-devicons" },
+        config = function()
             require "csandovalc.plugins.configs.trouble"
         end,
     },
@@ -31,22 +38,22 @@ return {
         end,
     },
     {
-		"mbbill/undotree",
+        "mbbill/undotree",
         config = function()
             require "csandovalc.plugins.configs.undotree"
         end,
     },
     {
-		"tpope/vim-fugitive",
+        "tpope/vim-fugitive",
         config = function()
             require "csandovalc.plugins.configs.fugitive"
         end,
     },
     {
-		"nvim-treesitter/nvim-treesitter-context",
+        "nvim-treesitter/nvim-treesitter-context",
     },
     {
-		"folke/zen-mode.nvim",
+        "folke/zen-mode.nvim",
         config = function()
             require "csandovalc.plugins.configs.zenmode"
         end,
@@ -55,19 +62,16 @@ return {
         "folke/twilight.nvim",
     },
     {
-		"github/copilot.vim",
+        "github/copilot.vim",
     },
     {
         -- This plugin is only for joke, can be removed
-		"eandrju/cellular-automaton.nvim",
+        "eandrju/cellular-automaton.nvim",
     },
     {
-		"laytan/cloak.nvim",
-        opts = function()
-            return require "csandovalc.plugins.configs.cloak"
-        end,
-        config = function(_, opts)
-            require("cloak").setup(opts)
+        "laytan/cloak.nvim",
+        config = function()
+            require "csandovalc.plugins.configs.cloak"
         end,
     },
     {
@@ -84,14 +88,11 @@ return {
     {
         "andweeb/presence.nvim",
         lazy = false,
-        opts = function()
-            return require "csandovalc.plugins.configs.presence"
-        end,
-        config = function(_, opts)
-            require("presence").setup(opts)
+        config = function()
+            require "csandovalc.plugins.configs.presence"
         end,
     },
-    { 
+    {
         'wakatime/vim-wakatime',
         lazy = false,
         setup = function()
