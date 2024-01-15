@@ -1,3 +1,11 @@
-vim.keymap.set("n", "<leader>tq", "<cmd>TroubleToggle quickfix<cr>",
-    { noremap = true, silent = true }
-)
+vim.keymap.set("n", "<leader>tt", function()
+    require("trouble").toggle()
+end)
+
+vim.keymap.set("n", "<leader>tn", function()
+    require("trouble").next({ skip_groups = true, jump = true })
+end)
+
+vim.keymap.set("n", "<leader>tp", function()
+    require("trouble").last({ skip_groups = true, jump = true })
+end)

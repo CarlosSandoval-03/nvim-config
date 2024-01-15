@@ -1,5 +1,8 @@
 require("csandovalc.core")
-require("lazy").setup("csandovalc.plugins")
+require("lazy").setup({
+    spec = "csandovalc.plugins",
+    change_detection = { notify = false }
+})
 
 -- Load the colorscheme
 function SetTheme(name)
