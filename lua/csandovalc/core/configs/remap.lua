@@ -72,4 +72,6 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
+-- Open Netrw File Explorer in the current project directory
+vim.keymap.set("n", "<leader>e", "<cmd>Lexplore<CR>")
 
