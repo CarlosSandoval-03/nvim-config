@@ -29,6 +29,9 @@ return {
     },
     {
 		"tpope/vim-fugitive",
+        config = function()
+            require "csandovalc.plugins.configs.fugitive"
+        end,
     },
     {
 		"nvim-treesitter/nvim-treesitter-context",
