@@ -1,7 +1,21 @@
 return {
-    -- TODO: Script to change theme faster
     {
         "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("tokyonight").setup({
+                style = "night",  
+                transparent = true,
+                terminal_colors = true,
+                styles = {
+                    comments = { italic = true },
+                    keywords = { italic = false },
+                    sidebars = "dark", -- style for sidebars, see below
+                    floats = "dark", -- style for floating windows
+                },
+            })
+        end,
     },
     {
         "rose-pine/neovim",
@@ -9,7 +23,9 @@ return {
         priority = 1000,
         name = "rose-pine",
         config = function()
-            vim.cmd("colorscheme rose-pine")
+            require("rose-pine").setup({
+                disable_background = true,
+            })
         end
     },
 }
