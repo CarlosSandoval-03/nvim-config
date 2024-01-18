@@ -36,6 +36,7 @@ lspconfig.cmake.setup({})
 
 -- Rust
 lspconfig.rust_analyzer.setup({})
+
 -- SystemVerilog
 lspconfig.svlangserver.setup({})
 
