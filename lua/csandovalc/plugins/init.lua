@@ -93,17 +93,23 @@ return {
         end,
     },
     {
-        'wakatime/vim-wakatime',
+        "wakatime/vim-wakatime",
         lazy = false,
         setup = function()
             vim.cmd([[packadd wakatime/vim-wakatime]])
         end
     },
     {
-        'stevearc/oil.nvim',
+        "stevearc/oil.nvim",
         dependencies = { "web-devicons" },
         config = function()
             require "csandovalc.plugins.configs.oil"
+        end,
+    },
+    {
+        "edKotinsky/Arduino.nvim",
+        config = function()
+            require "csandovalc.plugins.configs.arduino"
         end,
     },
 }

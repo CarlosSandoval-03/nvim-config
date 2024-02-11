@@ -28,7 +28,7 @@ lspconfig.asm_lsp.setup({
 lspconfig.bashls.setup({ filetypes = { "sh", "zsh" }, })
 
 -- C/C++
-lspconfig.clangd.setup({ filetypes = { "c", "cpp", "h", "hpp", "objc", "objcpp", "proto" }, })
+lspconfig.clangd.setup({ filetypes = { "c", "cpp", "h", "hpp", "C", "cc", "objc", "objcpp", "proto" }, root_dir = git_root_dir,})
 
 -- CMake and Make
 lspconfig.cmake.setup({})
