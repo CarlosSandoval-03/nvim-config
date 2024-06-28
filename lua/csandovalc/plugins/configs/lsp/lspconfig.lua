@@ -1,125 +1,91 @@
 local targets = require("csandovalc.plugins.configs.lsp.targets")
 
-require("mason").setup({})
-require("mason-lspconfig").setup({
-    ensure_installed = targets,
-})
+local cmp = require("cmp")
+local cmp_lsp = require("cmp_nvim_lsp")
+local capabilities = vim.tbl_deep_extend( "force", {}, vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities())
 
 local lspconfig = require("lspconfig")
-local capabilities = vim.lsp.protocol.make_client_capabilities()
 local git_root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd())
-
--------------------------------------------------------------------------------
---- System Programming
--------------------------------------------------------------------------------
--- Arduino
-lspconfig.arduino_language_server.setup({
-    filetypes = { "ino", "arduino" },
-    root_dir = git_root_dir,
-})
-
--- Assembly
-lspconfig.asm_lsp.setup({
-    filetypes = { "asm", "s", "S", "vmasm" },
-    root_dir = git_root_dir,
-})
-
--- Bash
-lspconfig.bashls.setup({ filetypes = { "sh", "zsh" }, })
-
--- C/C++
-lspconfig.clangd.setup({ filetypes = { "c", "cpp", "h", "hpp", "C", "cc", "objc", "objcpp", "proto" }, root_dir = git_root_dir,})
-
--- CMake and Make
-lspconfig.cmake.setup({})
---lspconfig.autotools_ls.setup({})
-
--- Rust
-lspconfig.rust_analyzer.setup({})
-
--- SystemVerilog
-lspconfig.svlangserver.setup({})
-
--- Zig
-lspconfig.zls.setup({})
-
--------------------------------------------------------------------------------
---- Web Programming
--------------------------------------------------------------------------------
--- CSS
-lspconfig.cssls.setup({})
-lspconfig.tailwindcss.setup({})
-
--- ESLint
-lspconfig.eslint.setup({})
-
--- Go
-lspconfig.gopls.setup({})
-lspconfig.golangci_lint_ls.setup({})
-
--- GraphQL
-lspconfig.graphql.setup({})
-
--- HTML
-lspconfig.html.setup({})
-
--- HTMX
-lspconfig.htmx.setup({})
-
--- Java
-lspconfig.jdtls.setup({})
-
--- JSON
-lspconfig.jsonls.setup({
-    capabilities = capabilities,
-})
-
--- JavaScript/TypeScript
-lspconfig.tsserver.setup({})
-
--- Python
-lspconfig.pyright.setup({})
-
--- Ruby
-lspconfig.ruby_ls.setup({})
-
--- SQL
-lspconfig.sqlls.setup({})
-
--------------------------------------------------------------------------------
---- Other Stuff
--------------------------------------------------------------------------------
--- Docker
-lspconfig.dockerls.setup({})
-lspconfig.docker_compose_language_service.setup({})
-
--- LaTeX
-lspconfig.ltex.setup({})
-
--- Lua
-lspconfig.lua_ls.setup({
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" },
-            },
+require("mason").setup({})
+require("mason-lspconfig").setup({
+  ensure_installed = targets,
+  handlers = {
+    function(server_name)
+      require("lspconfig")[server_name].setup({
+        root_dir = git_root_dir,
+        capabilities = capabilities,
+      })
+    end,
+    zls = function()
+      lspconfig.zls.setup({
+        root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
+        settings = {
+          zls = {
+            enable_inlay_hints = true,
+            enable_snippets = true,
+            warn_style = true,
+          },
         },
-    },
+      })
+      vim.g.zig_fmt_parse_errors = 0
+      vim.g.zig_fmt_autosave = 0
+    end,
+    ["lua_ls"] = function()
+      lspconfig.lua_ls.setup({
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            runtime = { version = "Lua 5.1" },
+            diagnostics = {
+              globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
+            }
+          }
+        }
+      })
+    end,
+    ["arduino_language_server"] = function()
+      lspconfig.arduino_language_server.setup({
+        filetypes = { "ino", "arduino" },
+        root_dir = git_root_dir,
+        cmd = {
+          "arduino-language-server",
+          "--cli-config", "/usr/bin/arduino-cli",
+          "-fqbn", targets.default_fqbn,
+        },
+      })
+    end,
+  },
 })
 
--- TOML
-lspconfig.taplo.setup({})
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ["<C-Space>"] = cmp.mapping.complete(),
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' }, -- For luasnip users.
+  }, {
+    { name = 'buffer' },
+  })
+})
 
--------------------------------------------------------------------------------
---- General Settings
--------------------------------------------------------------------------------
-local function attach(opts)
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-    vim.keymap.set("n", "<leader>vd", function() vim.lsp.buf.document_symbol() end, opts)
-    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-end
+vim.diagnostic.config({
+  -- update_in_insert = true,
+  float = {
+    focusable = false,
+    style = "minimal",
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
+})
