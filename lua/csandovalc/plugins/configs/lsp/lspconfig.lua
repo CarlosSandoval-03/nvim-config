@@ -6,7 +6,9 @@ local capabilities = vim.tbl_deep_extend( "force", {}, vim.lsp.protocol.make_cli
 
 local lspconfig = require("lspconfig")
 local git_root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd())
-require("mason").setup({})
+
+require("fidget").setup()
+require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = targets,
   handlers = {
