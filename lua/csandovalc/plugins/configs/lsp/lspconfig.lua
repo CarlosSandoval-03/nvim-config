@@ -2,7 +2,8 @@ local targets = require("csandovalc.plugins.configs.lsp.targets")
 
 local cmp = require("cmp")
 local cmp_lsp = require("cmp_nvim_lsp")
-local capabilities = vim.tbl_deep_extend( "force", {}, vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities())
+local capabilities = vim.tbl_deep_extend("force", {}, vim.lsp.protocol.make_client_capabilities(),
+  cmp_lsp.default_capabilities())
 
 local lspconfig = require("lspconfig")
 local git_root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd())

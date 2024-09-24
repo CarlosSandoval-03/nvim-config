@@ -2,41 +2,41 @@
 -- But it works, and that's what matters.
 
 local sys_programming = {
-  "arduino_language_server",
-  "asm_lsp",
+  --"arduino_language_server",
+  --"asm_lsp",
   -- Something is wrong with this one, I installed it manually.
   --"autotools-language-server", -- Make
-  "bashls",
+  --"bashls",
   "clangd",
   "cmake",
   "rust_analyzer",
-  "svlangserver", -- SystemVerilog
-  "zls", -- Zig
+  --"svlangserver", -- SystemVerilog
+  --"zls", -- Zig
 }
 
 local web_programming = {
   "cssls",
   "eslint",
-  "golangci_lint_ls",
-  "gopls",
+  --"golangci_lint_ls",
+  --"gopls",
   "graphql",
   "html",
-  "htmx",
+  --"htmx",
   "jdtls", -- Java Eclipse LSP
   "jsonls",
   "tsserver",
-  "pyright",
-  "ruby_ls",
-  "sqlls",
+  --"pyright",
+  --"ruby_ls",
+  --"sqlls",
   "tailwindcss",
 }
 
 local other_stuff = {
-  "dockerls",
+  --"dockerls",
   "docker_compose_language_service",
-  "ltex", -- LaTeX
+  --"ltex", -- LaTeX
   "lua_ls",
-  "taplo", -- TOML
+  --"taplo", -- TOML
 }
 
 local M = {}
