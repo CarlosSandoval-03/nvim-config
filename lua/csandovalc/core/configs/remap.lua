@@ -62,7 +62,7 @@ vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- Open plugin config file
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/csandovalc/pldotfiles/nvim/.config/nvim/lua/theprimeagen/packer.luaugins/init.lua<CR>");
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/csandovalc/plugins/init.lua<CR>");
 
 -- Uses the plugin "CellularAutomaton" to make it rain
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
