@@ -37,7 +37,7 @@ vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end,
 vim.keymap.set("n", "<leader>hf", function() harpoon:list():prepend() end)
 
 -- Add the current buffer to the list of buffers
-vim.keymap.set("n", "<leader>ha", function() harpoon:list():append() end)
+vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end)
 
 -- Remove the current buffer from the list of buffers
 vim.keymap.set("n", "<leader>hr", function() harpoon:list():remove() end)
