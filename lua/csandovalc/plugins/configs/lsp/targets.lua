@@ -23,8 +23,9 @@ local web_programming = {
   --"htmx",
   "jdtls", -- Java Eclipse LSP
   "jsonls",
-  "tsserver",
+  "ts_ls",
   "pyright",
+  "pylsp",
   --"ruby_ls",
   "tailwindcss",
   "omnisharp", -- C#
