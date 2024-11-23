@@ -57,6 +57,76 @@ require("mason-lspconfig").setup({
         },
       })
     end,
+    ["clangd"] = function()
+      lspconfig.clangd.setup({
+        root_dir = git_root_dir,
+        capabilities = capabilities,
+        cmd = {
+          "clangd",
+          "--background-index",
+          "--clang-tidy",
+          "--completion-style=detailed",
+          "--header-insertion=iwyu",
+          "--header-insertion-decorators",
+          "--suggest-missing-includes",
+          "--cross-file-rename",
+          "--header-insertion-decorators",
+          "--header-insertion=iwyu",
+          "--suggest-missing-includes",
+          "--cross-file-rename",
+          "--compile-commands-dir=build",
+        }
+      })
+    end,
+    ["ts_ls"] = function()
+      lspconfig.ts_ls.setup({
+        root_dir = git_root_dir,
+        capabilities = capabilities,
+        filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript" },
+      })
+    end,
+    ["gopls"] = function()
+      lspconfig.gopls.setup({
+        capabilities = capabilities,
+        root_dir = git_root_dir,
+        settings = {
+          gopls = {
+            gofumpt = true,
+            codelenses = {
+              gc_details = false,
+              generate = true,
+              regenerate_cgo = true,
+              run_govulncheck = true,
+              test = true,
+              tidy = true,
+              upgrade_dependency = true,
+              vendor = true,
+            },
+            hints = {
+              assignVariableTypes = false,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
+            analyses = {
+              fieldalignment = true,
+              nilness = true,
+              unusedparams = true,
+              unusedwrite = true,
+              useany = true,
+            },
+            usePlaceholders = true,
+            completeUnimported = true,
+            staticcheck = true,
+            directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+            semanticTokens = true,
+          },
+        },
+      })
+    end
   },
 })
 

@@ -28,7 +28,7 @@ local web_programming = {
   "pylsp",
   --"ruby_ls",
   "tailwindcss",
-  "omnisharp", -- C#
+  --"omnisharp", -- C#
 }
 
 local cloud = {
