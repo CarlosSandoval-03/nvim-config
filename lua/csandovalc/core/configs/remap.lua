@@ -32,14 +32,14 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- Copy the { INLINE_COMMENT } to the system clipboard
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]]) -- selected text
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]]) -- selected text
 vim.keymap.set("n", "<leader>Y", [["+Y]])        -- current line
 
 -- Delete the selected text BUT DON'T copy it to the clipboard
 vim.keymap.set("v", "<leader>d", [["_d]])
 
 -- Press <C-k> to exit to normal mode
-vim.keymap.set({"i", "v"}, "<C-k>", "<Esc>")
+vim.keymap.set({ "i", "v" }, "<C-k>", "<Esc>")
 
 -- In normal mode, press 'Q' do nothing
 vim.keymap.set("n", "Q", "<nop>")
@@ -69,9 +69,18 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 -- Reload neovim config without restart
 vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
+  -- Save file
+  vim.cmd("update")
+  -- if lua file and is in nvim config directory
+  local current_file_path = vim.api.nvim_buf_get_name(0)
+  local is_in_nvim_config = current_file_path:find("^" .. vim.fn.stdpath("config")) ~= nil
+  local is_lua = current_file_path:find("%.lua$") ~= nil
+
+  -- Reload the file
+  if (is_in_nvim_config and is_lua) then
+    vim.cmd.so()
+  end
 end)
 
 -- Open Netrw File Explorer in the current project directory
 vim.keymap.set("n", "<leader>e", "<cmd>Lexplore<CR>")
-
